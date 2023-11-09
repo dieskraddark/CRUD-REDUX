@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
-import { useDispatch ,useEffect } from 'react-redux'
+import { useDispatch  } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 
 
 
 export default function Home() {
-    const[input, SetInput] = useState("");
     const [error, SetError] = useState(null);
     const navigate= useNavigate();
     // const dispatch = useDispatch();

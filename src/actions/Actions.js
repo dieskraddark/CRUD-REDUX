@@ -1,13 +1,13 @@
 export const addItems=()=>({
-    type:'ADD_ITEMS'
+    type:'ADD_USER'
    
 
 })
 
 export const updateItems=()=>{
-    type:'UPDATE_ITEMS'
+    type:'UPDATE_USER'
 }
 
 export const deleteItems=()=>{
-    type:'DELETE_ITEMS'
+    type:'DELETE_USER'
 }
