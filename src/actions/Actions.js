@@ -1,13 +1,25 @@
-export const addItems=()=>({
-    type:'ADD_USER'
-   
+export const addPerson = (person) => {
+    return {
+        type: 'ADD_PERSON',
+        payload: person
 
-})
-
-export const updateItems=()=>{
-    type:'UPDATE_USER'
+    }
+console.log("asp",addPerson.payload);
 }
 
-export const deleteItems=()=>{
-    type:'DELETE_USER'
-}
+
+export const removePerson = (personId) => {
+    return {
+        type: 'REMOVE_PERSON',
+        payload: personId,
+    }
+};
+
+export const editPerson = (updatedPerson) => {
+
+    return {
+        type: 'EDIT_PERSON',
+        payload: updatedPerson,
+    }
+
+};
