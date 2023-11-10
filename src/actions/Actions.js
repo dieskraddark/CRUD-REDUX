@@ -4,7 +4,7 @@ export const addPerson = (person) => {
         payload: person
 
     }
-console.log("asp",addPerson.payload);
+    console.log("asp", addPerson.payload);
 }
 
 

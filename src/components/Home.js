@@ -1,13 +1,21 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux'
-
+import { useDispatch } from 'react-redux';
+import { removePerson } from '../actions/Actions';
 
 export default function Home() {
-    const [error, SetError] = useState(null);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
+    const handleDelete = (id) => {
+        if (window.confirm("Delete the item?")) {
+            dispatch(removePerson(id))
+        } else {
+            alert("Cancelled")
+        }
 
+    }
     const addclick = () => {
         navigate('/addUser');
     };
@@ -33,7 +41,7 @@ export default function Home() {
                             <td>{pop.grade}</td>
                             <td>
                                 <button className="edit-button">Edit</button>
-                                <button className="delete-button">Delete</button>
+                                <button className="delete-button" onClick={() => handleDelete(pop.id)}>Delete</button>
                             </td>
                         </tr>
                     ))}

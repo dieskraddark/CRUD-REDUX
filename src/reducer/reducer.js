@@ -2,7 +2,7 @@ const initialState = {
     people: [],
 };
 
- export const crudReducer = (state = initialState, action) => {
+export const crudReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_PERSON':
             return {
@@ -13,9 +13,13 @@ const initialState = {
                 ]
             }
         case 'REMOVE_PERSON':
+            const NewPeople = state.people.filter(person => person.id !== action.payload)
             return {
                 ...state,
-            }
+                people: NewPeople
+
+
+            };
 
         case 'EDIT_PERSON':
             return {
