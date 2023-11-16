@@ -40,7 +40,7 @@ export default function Home() {
                             <td>{pop.age}</td>
                             <td>{pop.grade}</td>
                             <td>
-                                <button className="edit-button">Edit</button>
+                                <button className="edit-button"  onClick={()=> navigate(`/editUser/${pop.id}`)} >Edit</button>
                                 <button className="delete-button" onClick={() => handleDelete(pop.id)}>Delete</button>
                             </td>
                         </tr>

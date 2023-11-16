@@ -15,11 +15,11 @@ export const removePerson = (personId) => {
     }
 };
 
-export const editPerson = (updatedPerson) => {
+export const editPerson = (editedPerson) => {
 
     return {
         type: 'EDIT_PERSON',
-        payload: updatedPerson,
+        payload:editedPerson,
     }
 
 };

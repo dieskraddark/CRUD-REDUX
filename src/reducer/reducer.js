@@ -22,9 +22,13 @@ export const crudReducer = (state = initialState, action) => {
             };
 
         case 'EDIT_PERSON':
+            const updatedPeople = state.people.map(person =>
+                person.id === action.payload.id ? action.payload : person
+            );
             return {
                 ...state,
-            }
+                people: updatedPeople,
+            };
         default:
             return state;
     }
