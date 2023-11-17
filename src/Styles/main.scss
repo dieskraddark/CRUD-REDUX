@@ -1,0 +1,13 @@
+$hovercolor: #072546;
+$main-color: #fff;
+
+main-button {
+    background-color: #007bff;
+    color: $main-color;
+    border: none;
+    padding: 8px 16px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+}

@@ -46,7 +46,6 @@
   font-weight: bold;
 }
 
-/* Hover effect */
 .edit-button:hover,
 .delete-button:hover,
 .add-button:hover {
@@ -90,5 +89,5 @@ select {
 
 .second-header{
   text-align:center;
-  color :red;
+  color :#ec1745;
 }

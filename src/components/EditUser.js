@@ -14,7 +14,6 @@ export default function EditUser() {
         age: "",
         grade: ""
     });
-    console.log(id);
 
     useEffect(() => {
         const selectedPerson = people.find(person => person.id == parseInt(id));
@@ -40,7 +39,6 @@ export default function EditUser() {
 
         });
     };
-
 
     const goback = () => {
         navigate('/');
