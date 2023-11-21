@@ -4,9 +4,8 @@ export const addPerson = (person) => {
         payload: person
 
     }
-    console.log("asp", addPerson.payload);
-}
 
+}
 
 export const removePerson = (personId) => {
     return {
@@ -19,7 +18,7 @@ export const editPerson = (editedPerson) => {
 
     return {
         type: 'EDIT_PERSON',
-        payload:editedPerson,
+        payload: editedPerson,
     }
 
 };

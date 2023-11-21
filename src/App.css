@@ -35,7 +35,9 @@
 }
 
 .edit-button,
-.delete-button ,.go-back ,.add-user{
+.delete-button,
+.go-back,
+.add-user {
   background-color: #007bff;
   color: #fff;
   border: none;
@@ -53,7 +55,7 @@
   color: #fff;
 }
 
-.add-button  {
+.add-button {
   background-color: #ec1745;
   color: #fff;
   border: none;
@@ -75,8 +77,10 @@ form {
   margin-top: 5%;
 }
 
-input[type=text],
+input[type=email],
 input[type=number],
+input[type=date],
+
 select {
   width: 40%;
   display: block;
@@ -87,7 +91,56 @@ select {
   box-sizing: border-box;
 }
 
-.second-header{
-  text-align:center;
-  color :#ec1745;
+.second-header {
+  text-align: center;
+  color: #b80a30;
+}
+
+.radio-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-radio {
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.custom-radio input {
+  margin-right: 8px;
+}
+
+.custom-radio input:checked+label {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.custom-radio label {
+  transition: color 0.3s, font-weight 0.3s;
+}
+
+nav {
+  background-color: #333;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5em;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  padding: 8px;
+  border-radius: 4px 0 0 4px;
+  margin-right: 5px;
+  width: 200px;
 }

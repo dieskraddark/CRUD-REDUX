@@ -10,10 +10,16 @@ export default function EditUser() {
     const people = useSelector(state => state.people);
 
     const [editedPerson, setEditedPerson] = useState({
-        name: "",
-        age: "",
-        grade: ""
+        email: "",
+        dob: "",
+        phone: ""
     });
+    const [error, SetError] = useState(null);
+
+    const emailvalidate = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
 
     useEffect(() => {
         const selectedPerson = people.find(person => person.id == parseInt(id));
@@ -28,8 +34,20 @@ export default function EditUser() {
         handleEdit();
     }
     const handleEdit = () => {
-        dispatch(editPerson(editedPerson));
-        goback();
+        if (isNaN(editedPerson.phone) || editedPerson.phone.length !== 10) {
+            SetError("please enter the valid number");
+            setTimeout(() => {
+                SetError(null);
+            }, 1800);
+        }
+        else if (!emailvalidate(editedPerson.email)) {
+            SetError("please enter valid email");
+        }
+        else {
+            dispatch(editPerson(editedPerson));
+            goback();
+        }
+
     }
 
     const handleChange = (e) => {
@@ -47,14 +65,14 @@ export default function EditUser() {
 
     return (
         <div className='second'>
-            <h3 className='second-header'></h3>
+            {error && <h3 className='second-header'>{error}</h3>}
             <form onSubmit={handleFormSubmit}>
-                <label htmlFor="fname">Name</label>
-                <input type="text" name="name" defaultValue={editedPerson.name} onChange={handleChange} placeholder="Your name.." />
-                <label htmlFor="Age">Age</label>
-                <input type="number" name="age" value={editedPerson.age} onChange={handleChange} placeholder="Your Age.." />
-                <label htmlFor="Grade">Grade</label>
-                <input type="text" name="grade" value={editedPerson.grade} onChange={handleChange} placeholder="Your Grade.." />
+                <label htmlFor="email">Email</label>
+                <input type="email" name="email" defaultValue={editedPerson.email} onChange={handleChange} placeholder="Your Email.." />
+                <label htmlFor="dob">DOB</label>
+                <input type="date" name="dob" value={editedPerson.dob} onChange={handleChange} />
+                <label htmlFor="Phone">Phone</label>
+                <input type="number" name="phone" value={editedPerson.phone} onChange={handleChange} placeholder="Your Phone.." />
                 <button className="add-user" onClick={handleEdit}>Update User</button>
                 <button className="go-back" onClick={goback}>Go Back</button>
             </form>

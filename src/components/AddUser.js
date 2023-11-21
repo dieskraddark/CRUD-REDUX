@@ -7,25 +7,42 @@ export default function AddUser() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [error, SetError] = useState(null);
-    const [name, setName] = useState("");
-    const [age, setAge] = useState("")
-    const [grade, setGrade] = useState("")
+    const [email, SetEmail] = useState("");
+    const [dob, SetDob] = useState("")
+    const [phone, SetPhone] = useState("")
 
     const goback = () => {
         navigate('/');
     }
 
+    const emailvalidate = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        const NewPerson = { id: Date.now(), name, age, grade };
-        if (!name || !age || !grade) {
-            SetError("please fill out the inputs");
+        const NewPerson = { id: Date.now(), email, dob, phone };
+        if (phone.length !== 10) {
+            SetError("please enter the valid number");
             setTimeout(() => {
                 SetError(null);
             }, 1800);
-
         }
-        
+
+        else if (!emailvalidate(email)) {
+            SetError("please enter valid email");
+            setTimeout(() => {
+                SetError(null);
+            }, 1800);
+        }
+        else if (!email || !phone || !dob) {
+            SetError("please fill up the input forms");
+            setTimeout(() => {
+                SetError(null);
+            }, 1800);
+        }
+
         else {
             dispatch(addPerson(NewPerson));
             console.log(NewPerson);
@@ -38,17 +55,35 @@ export default function AddUser() {
     return (
         <div className='second'>
             {error && <h3 className='second-header'>{error}</h3>}
-            <h3 className='second-header'></h3>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="fname">Name</label>
-                <input type="text" id="fname" value={name} onChange={e => setName(e.target.value)} placeholder="Your name.." />
-                <label htmlFor="Age">Age</label>
-                <input type="number" id="Age" value={age} onChange={e => setAge(e.target.value)} placeholder="Your Age.." />
-                <label htmlFor="Grade">Grade</label>
-                <input type="text" id="grade" value={grade} onChange={e => setGrade(e.target.value)} placeholder="Your Grade.." />
+                <label htmlFor="email">Email</label>
+                <input type="email" id="Email" value={email} onChange={e => SetEmail(e.target.value)} placeholder="Your Email..." />
+                <label htmlFor="DOB">DOB</label>
+                <input type="date" name="dob" value={dob} onChange={e => SetDob(e.target.value)} />
+                <label htmlFor="Phone">Phone</label>
+                <input type="number" name='phone' value={phone} onChange={e => SetPhone(e.target.value)} placeholder="Your Phone.." />
+
+                <div className="gender-dropdown-container">
+                    <label htmlFor="gender" name="gender">Gender</label>
+                    <select id="gender" value="name">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div className="radio-buttons">
+                    <label className="custom-radio">
+                        <input type="radio" name="option" value="option1" />
+                        Active
+                    </label>
+                    <label className="custom-radio">
+                        <input type="radio" name="option" value="option2" />
+                        None
+                    </label>
+                </div>
+
                 <button className="add-user" type='submit'>Add User</button>
                 <button className="go-back" onClick={goback}>Go Back</button>
             </form>
         </div>
     )
-}
+} 

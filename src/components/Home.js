@@ -27,20 +27,22 @@ export default function Home() {
             <table id='customers'>
                 <thead>
                     <tr>
-                        <th>NAME</th>
-                        <th>AGE</th>
-                        <th>GRADE</th>
-                        <th>ACTION</th>
+                        <th>Email</th>
+                        <th>D.O.B</th>
+                        <th>Phone</th>
+                        <th>Action</th>
+                        <th>Active User</th>
+                        <th>Phone</th>
                     </tr>
                 </thead>
                 <tbody>
                     {people.map((pop) => (
                         <tr key={pop.id}>
-                            <td>{pop.name}</td>
-                            <td>{pop.age}</td>
-                            <td>{pop.grade}</td>
+                            <td>{pop.email}</td>
+                            <td>{pop.dob}</td>
+                            <td>{pop.phone}</td>
                             <td>
-                                <button className="edit-button"  onClick={()=> navigate(`/editUser/${pop.id}`)} >Edit</button>
+                                <button className="edit-button" onClick={() => navigate(`/editUser/${pop.id}`)} >Edit</button>
                                 <button className="delete-button" onClick={() => handleDelete(pop.id)}>Delete</button>
                             </td>
                         </tr>
