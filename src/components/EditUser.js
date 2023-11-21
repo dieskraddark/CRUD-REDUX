@@ -10,9 +10,11 @@ export default function EditUser() {
     const people = useSelector(state => state.people);
 
     const [editedPerson, setEditedPerson] = useState({
+        name:"",
         email: "",
         dob: "",
-        phone: ""
+        phone: "",
+        gender:""
     });
     const [error, SetError] = useState(null);
 
@@ -43,6 +45,12 @@ export default function EditUser() {
         else if (!emailvalidate(editedPerson.email)) {
             SetError("please enter valid email");
         }
+        else if (!editedPerson.email || !editedPerson.phone || !editedPerson.dob ||editedPerson.gender === "" ||editedPerson.name ==="") {
+            SetError("please fill up the input forms");
+            setTimeout(() => {
+                SetError(null);
+            }, 1800);
+        }
         else {
             dispatch(editPerson(editedPerson));
             goback();
@@ -67,12 +75,21 @@ export default function EditUser() {
         <div className='second'>
             {error && <h3 className='second-header'>{error}</h3>}
             <form onSubmit={handleFormSubmit}>
+            <input  className="name"type='text' name='fname' value={editedPerson.name} onChange={handleChange} placeholder='Your Name...' required />
                 <label htmlFor="email">Email</label>
                 <input type="email" name="email" defaultValue={editedPerson.email} onChange={handleChange} placeholder="Your Email.." />
                 <label htmlFor="dob">DOB</label>
                 <input type="date" name="dob" value={editedPerson.dob} onChange={handleChange} />
                 <label htmlFor="Phone">Phone</label>
                 <input type="number" name="phone" value={editedPerson.phone} onChange={handleChange} placeholder="Your Phone.." />
+                <div className="gender-dropdown-container">
+                    <label htmlFor="gen" name="gen">Gender</label>
+                    <select name="gender"value={editedPerson.gender} onChange={handleChange}>
+                        <option value="">Select </option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
                 <button className="add-user" onClick={handleEdit}>Update User</button>
                 <button className="go-back" onClick={goback}>Go Back</button>
             </form>

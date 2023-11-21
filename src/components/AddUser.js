@@ -6,10 +6,13 @@ import { useDispatch } from 'react-redux';;
 export default function AddUser() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [name, Setname] = useState("")
     const [error, SetError] = useState(null);
     const [email, SetEmail] = useState("");
-    const [dob, SetDob] = useState("")
-    const [phone, SetPhone] = useState("")
+    const [dob, SetDob] = useState("");
+    const [phone, SetPhone] = useState("");
+    const [gender, SetGender] = useState("");
+    const [option, SetOption] = useState("option1")
 
     const goback = () => {
         navigate('/');
@@ -22,7 +25,7 @@ export default function AddUser() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const NewPerson = { id: Date.now(), email, dob, phone };
+        const NewPerson = { id: Date.now(), name, email, dob, phone, gender, option };
         if (phone.length !== 10) {
             SetError("please enter the valid number");
             setTimeout(() => {
@@ -36,7 +39,7 @@ export default function AddUser() {
                 SetError(null);
             }, 1800);
         }
-        else if (!email || !phone || !dob) {
+        else if (!email || !phone || !dob ||gender === ""||!option||name=="")  {
             SetError("please fill up the input forms");
             setTimeout(() => {
                 SetError(null);
@@ -56,8 +59,10 @@ export default function AddUser() {
         <div className='second'>
             {error && <h3 className='second-header'>{error}</h3>}
             <form onSubmit={handleSubmit}>
+                <label htmlFor="name">Name</label>
+                <input  className="name"type='text' name='fname' value={name} onChange={e=> Setname(e.target.value)} placeholder='Your Name...' required />
                 <label htmlFor="email">Email</label>
-                <input type="email" id="Email" value={email} onChange={e => SetEmail(e.target.value)} placeholder="Your Email..." />
+                <input type="email" value={email} onChange={e => SetEmail(e.target.value)} placeholder="Your Email..." />
                 <label htmlFor="DOB">DOB</label>
                 <input type="date" name="dob" value={dob} onChange={e => SetDob(e.target.value)} />
                 <label htmlFor="Phone">Phone</label>
@@ -65,18 +70,19 @@ export default function AddUser() {
 
                 <div className="gender-dropdown-container">
                     <label htmlFor="gender" name="gender">Gender</label>
-                    <select id="gender" value="name">
+                    <select value={gender} onChange={e=> SetGender(e.target.value)}>
+                        <option value="">Select </option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                     </select>
                 </div>
                 <div className="radio-buttons">
                     <label className="custom-radio">
-                        <input type="radio" name="option" value="option1" />
+                        <input type="radio" name="option" value="active" checked={option === "active"} onChange={()=> {SetOption("active")}} />
                         Active
                     </label>
                     <label className="custom-radio">
-                        <input type="radio" name="option" value="option2" />
+                        <input type="radio" name="option" value="none" checked={option === 'none' } onChange={()=>{SetOption("none")}}/>
                         None
                     </label>
                 </div>

@@ -1,7 +1,8 @@
 #customers {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 90%;
+  
 }
 
 #customers td,
@@ -81,7 +82,7 @@ input[type=email],
 input[type=number],
 input[type=date],
 
-select {
+select, .name {
   width: 40%;
   display: block;
   padding: 12px 20px;
