@@ -1,14 +1,18 @@
-#customers {
+* {
   font-family: Arial, Helvetica, sans-serif;
+}
+
+#customers {
   border-collapse: collapse;
   width: 90%;
-  
+
 }
 
 #customers td,
 #customers th {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 8px; 
+  
 }
 
 #customers tr:nth-child(even) {
@@ -69,7 +73,7 @@
 }
 
 .second {
-  width: 100%;
+  width: 90%;
   padding: 20px;
 }
 
@@ -82,7 +86,8 @@ input[type=email],
 input[type=number],
 input[type=date],
 
-select, .name {
+select,
+.name {
   width: 40%;
   display: block;
   padding: 12px 20px;
@@ -128,6 +133,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  overflow-x: none;
 }
 
 .logo {
@@ -144,4 +150,53 @@ nav {
   border-radius: 4px 0 0 4px;
   margin-right: 5px;
   width: 200px;
+}
+
+@media only screen and (max-width :600px) {
+  nav {
+    width: 95%;
+    align-items: center;
+  }
+
+  .container {
+    margin: 0px 5px;
+  }
+
+  #customers {
+    width: 5%
+  }
+
+  #customers td,
+  #customers th {
+    border: 1px solid #ddd;
+    padding: 5px;
+  }
+
+  #customers th {
+    padding-top: 3px;
+    padding-bottom: 3px;
+  }
+
+  .emp {
+    font-size: 20px;
+  }
+
+  .second {
+    width: 100%;
+    padding: 0%;
+  }
+
+  form {
+    margin-left: 5%;
+  }
+
+  input[type=email],
+  input[type=number],
+  input[type=date],
+  select,
+  .name {
+    width: 90%;
+    margin-bottom: 8px
+  }
+
 }

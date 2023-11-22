@@ -32,7 +32,7 @@ export default function Home() {
                         <th>D.O.B</th>
                         <th>Phone</th>
                         <th>Gender</th>
-                        <th>Active Users</th>
+                        <th>Users Action</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
