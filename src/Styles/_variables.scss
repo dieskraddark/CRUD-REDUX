@@ -1,0 +1,37 @@
+$body-font :Arial,
+Helvetica,
+sans-serif;
+$primary-color: #007bff;
+$secondary-color: #072546;
+$accent-color: #ec1745;
+$background-color: #f2f2f2;
+$simple-color: #fff;
+$dark-color: #121b18;
+$table-color: #ddd;
+
+@mixin button-styles {
+    background-color: $primary-color;
+    color: $simple-color;
+    border: none;
+    padding: 8px 16px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+@mixin form-styles {
+
+    width: 40%;
+    display: block;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+@mixin mobile-buttons {
+    font-size: 8px;
+    padding: 11px;
+}

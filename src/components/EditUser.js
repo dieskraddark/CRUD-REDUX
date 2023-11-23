@@ -25,7 +25,7 @@ export default function EditUser() {
     }
 
     useEffect(() => {
-        const selectedPerson = people.find(person => person.id == parseInt(id));
+        const selectedPerson = people.find(person => person.id === parseInt(id));
         if (selectedPerson) {
             setEditedPerson(selectedPerson);
         }
@@ -109,8 +109,8 @@ export default function EditUser() {
                         None
                     </label>
                 </div>
-                <button className="add-user" onClick={handleEdit}>Update User</button>
-                <button className="go-back" onClick={goback}>Go Back</button>
+                <button className="add-user" onClick={handleEdit}>Update </button>
+                <button className="go-back" onClick={goback}> Back</button>
             </form>
         </div>
     )

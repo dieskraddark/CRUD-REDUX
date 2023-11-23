@@ -11,8 +11,8 @@
 #customers td,
 #customers th {
   border: 1px solid #ddd;
-  padding: 8px; 
-  
+  padding: 8px;
+
 }
 
 #customers tr:nth-child(even) {
@@ -153,13 +153,27 @@ nav {
 }
 
 @media only screen and (max-width :600px) {
+
+  th,
+  td {
+    font-size: 8.5px;
+  }
+
+  .edit-button,
+  .delete-button {
+    font-size: 8px;
+    padding: 11px;
+
+  }
+
   nav {
-    width: 95%;
+    width: 90%;
     align-items: center;
+    font-size: 12px;
   }
 
   .container {
-    margin: 0px 5px;
+    margin: 4px 2px;
   }
 
   #customers {

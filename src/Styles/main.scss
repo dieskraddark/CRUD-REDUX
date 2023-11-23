@@ -1,13 +1,190 @@
-$hovercolor: #072546;
-$main-color: #fff;
+@import "_variables";
 
-main-button {
-    background-color: #007bff;
-    color: $main-color;
+* {
+    font-family: $body-font;
+}
+
+#customers {
+    border-collapse: collapse;
+    width: 90%;
+
+    td,
+    th {
+        border: 1px solid $table-color;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: $background-color;
+    }
+
+    tr:hover {
+        background-color: $table-color;
+    }
+
+    th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: $dark-color;
+        color: $table-color;
+    }
+}
+
+.container {
+    margin: 0px 50px;
+}
+
+.emp {
+    text-align: center;
+}
+
+.edit-button,
+.delete-button,
+.go-back,
+.add-user {
+    @include button-styles;
+}
+
+input[type=email],
+input[type=number],
+input[type=date],
+select,
+.name {
+    @include form-styles;
+}
+
+.edit-button:hover,
+.delete-button:hover,
+.add-button:hover {
+    background-color: $secondary-color;
+    color: $simple-color;
+}
+
+.add-button {
+    background-color: $accent-color;
+    color: $simple-color;
     border: none;
-    padding: 8px 16px;
-    margin: 5px;
+    padding: 10px 18px;
+    margin-top: 12px;
     cursor: pointer;
+    font-size: 13px;
     border-radius: 4px;
     font-weight: bold;
+}
+
+.second {
+    width: 90%;
+    padding: 20px;
+}
+
+form {
+    margin-left: 30%;
+    margin-top: 5%;
+}
+
+.custom-radio {
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 16px;
+
+    input {
+        margin-right: 8px;
+
+        &:checked+label {
+            font-weight: bold;
+            color: $primary-color;
+        }
+    }
+
+    label {
+        transition: color 0.3s, font-weight 0.3s;
+    }
+}
+
+nav {
+    background-color: $dark-color;
+    color: $simple-color;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow-x: none;
+}
+
+.logo {
+    font-size: 1.5em;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    padding: 8px;
+    border-radius: 4px 0 0 4px;
+    margin-right: 5px;
+    width: 200px;
+}
+
+@media only screen and (max-width: 600px) {
+
+    th,
+    td {
+        font-size: 8.5px;
+    }
+
+    .edit-button,
+    .delete-button {
+        font-size: 8px;
+        padding: 11px;
+    }
+
+    nav {
+        width: 90%;
+        align-items: center;
+        font-size: 12px;
+    }
+
+    .container {
+        margin: 4px 2px;
+    }
+
+    #customers {
+        width: 5%;
+    }
+
+    #customers td,
+    #customers th {
+        border: 1px solid #ddd;
+        padding: 5px;
+    }
+
+    #customers th {
+        padding-top: 3px;
+        padding-bottom: 3px;
+    }
+
+    .emp {
+        font-size: 20px;
+    }
+
+    .second {
+        width: 100%;
+        padding: 0%;
+    }
+
+    form {
+        margin-left: 5%;
+    }
+
+    input[type=email],
+    input[type=number],
+    input[type=date],
+    select,
+    .name {
+        width: 90%;
+        margin-bottom: 8px;
+    }
 }
