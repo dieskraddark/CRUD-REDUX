@@ -19,45 +19,53 @@ export default function Home() {
     const addclick = () => {
         navigate('/addUser');
     };
-    const people = useSelector(state => state.people)
+    const people = useSelector(state => state.people);
+    const search = useSelector(state => state.searchQuery);
 
-    return (
-        <div className='container'>
-            <h1 className='emp'>Student Data</h1>
-            <table id='customers'>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>D.O.B</th>
-                        <th>Phone</th>
-                        <th>Gender</th>
-                        <th>Users Action</th>
-                        <th>Actions</th>
+    const filteredPeople= people.filter(
+        (person) => 
+        person.name.toLowerCase().includes(search.toLowerCase().trim())
+     ) ;
+
+
+
+return (
+    <div className='container'>
+        <h1 className='emp'>Student Data</h1>
+        <table id='customers'>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>D.O.B</th>
+                    <th>Phone</th>
+                    <th>Gender</th>
+                    <th>Users Action</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {filteredPeople.map((pop) => (
+                    <tr key={pop.id}>
+                        <td>{pop.name}</td>
+                        <td>{pop.email}</td>
+                        <td>{pop.dob}</td>
+                        <td>{pop.phone}</td>
+                        <td>{pop.gender}</td>
+                        <td>{pop.option}</td>
+                        <td>
+                            <button className="edit-button" onClick={() => navigate(`/editUser/${pop.id}`)} >Edit</button>
+                            <button className="delete-button" onClick={() => handleDelete(pop.id)}>Delete</button>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    {people.map((pop) => (
-                        <tr key={pop.id}>
-                            <td>{pop.name}</td>
-                            <td>{pop.email}</td>
-                            <td>{pop.dob}</td>
-                            <td>{pop.phone}</td>
-                            <td>{pop.gender}</td>
-                            <td>{pop.option}</td>
-                            <td>
-                                <button className="edit-button" onClick={() => navigate(`/editUser/${pop.id}`)} >Edit</button>
-                                <button className="delete-button" onClick={() => handleDelete(pop.id)}>Delete</button>
-                            </td>
-                        </tr>
-                    ))}
+                ))}
 
 
-                </tbody>
-            </table>
-            <div className="add">
-                <button className="add-button" onClick={addclick}>Add User</button>
-            </div>
+            </tbody>
+        </table>
+        <div className="add">
+            <button className="add-button" onClick={addclick}>Add User</button>
         </div>
-    )
+    </div>
+)
 }

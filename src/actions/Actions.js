@@ -22,3 +22,9 @@ export const editPerson = (editedPerson) => {
     }
 
 };
+export const searchPerson = (query) => {
+    return {
+        type: 'SEARCH_PERSON',
+        payload: query,
+    }
+};

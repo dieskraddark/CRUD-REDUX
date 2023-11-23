@@ -1,5 +1,6 @@
 const initialState = {
     people: [],
+    searchQuery:''
 };
 
 export const crudReducer = (state = initialState, action) => {
@@ -29,6 +30,13 @@ export const crudReducer = (state = initialState, action) => {
                 ...state,
                 people: updatedPeople,
             };
+        
+        case 'SEARCH_PERSON':
+            return {
+                ...state,
+                searchQuery:action.payload,
+            };    
+
         default:
             return state;
     }
