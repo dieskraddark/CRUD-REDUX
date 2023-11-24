@@ -15,9 +15,9 @@ export default function Navbar() {
     return (
         <div>
             <nav>
-                <div class="logo">Student Info</div>
-                <div class="search-bar">
-                    <input type="text" onChange={handleSearch} class="search-input" placeholder="Search..." />
+                <div className="logo">Student Info</div>
+                <div className="search-bar">
+                    <input type="text" onChange={handleSearch} className="search-input" placeholder="Search..." />
                 </div>
 
             </nav>

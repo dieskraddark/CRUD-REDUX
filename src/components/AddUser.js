@@ -51,9 +51,9 @@ export default function AddUser() {
             console.log(NewPerson);
             goback();
             SetError("");
-            
-        }
 
+        }
+        
     }
 
     return (
