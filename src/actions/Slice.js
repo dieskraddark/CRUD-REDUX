@@ -1,12 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+
 const initialState = {
     people: [],
     searchQuery: ''
 };
 
-const studentSlice = createSlice({
-    name: 'student',
+
+const crudSlice = createSlice({
+    name: 'crud',
     initialState,
     reducers: {
         addPerson: (state, action) => {
@@ -26,5 +28,5 @@ const studentSlice = createSlice({
     }
 });
 
-export const { addPerson, removePerson, editPerson, searchPerson } = studentSlice.actions;
-export default studentSlice.reducer;
+export const { addPerson, removePerson, editPerson, searchPerson } = crudSlice.actions;
+export const crudReducer = crudSlice.reducer;
