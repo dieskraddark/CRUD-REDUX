@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { editPerson } from '../actions/Actions';
+import { editPerson } from '../actions/Slice';
 
 export default function EditUser() {
     const { id } = useParams();

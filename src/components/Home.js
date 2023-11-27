@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux';
-import { removePerson } from '../actions/Actions';
+import { removePerson } from '../actions/Slice';
 
 export default function Home() {
     const navigate = useNavigate();

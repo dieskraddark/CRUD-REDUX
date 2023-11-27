@@ -15,8 +15,8 @@ export const crudReducer = (state = initialState, action) => {
             }
         case 'REMOVE_PERSON':
             const NewPeople = state.people.filter(person => person.id !== action.payload)
-            return {
-                ...state,
+            return { //if id is 
+                
                 people: NewPeople
 
 

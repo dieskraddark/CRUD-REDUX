@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { addPerson } from '../actions/Actions';
+import { addPerson } from '../actions/Slice';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';;
 

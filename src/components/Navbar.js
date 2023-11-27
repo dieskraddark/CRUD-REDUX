@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
-import { searchPerson } from '../actions/Actions';
+import { searchPerson } from '../actions/Slice';
 
 export default function Navbar() {
 
