@@ -12,7 +12,7 @@ export default function AddUser() {
     const [dob, SetDob] = useState("");
     const [phone, SetPhone] = useState("");
     const [gender, SetGender] = useState("");
-    const [option, SetOption] = useState("option1")
+    const [option, SetOption] = useState("active")
 
     const goback = () => {
         navigate('/');
@@ -53,7 +53,7 @@ export default function AddUser() {
             SetError("");
 
         }
-        
+
     }
 
     return (
