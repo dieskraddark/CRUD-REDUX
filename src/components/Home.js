@@ -26,9 +26,7 @@ export default function Home() {
         (person) =>
             person.name.toLowerCase().includes(search.toLowerCase())
     );
-
-
-
+    
     return (
         <div className='container'>
             <h1 className='emp'>Student Data</h1>
@@ -45,7 +43,8 @@ export default function Home() {
                     </tr>
                 </thead>
                 <tbody>
-                    {filteredPeople.map((pop) => (
+                    {filteredPeople.map((pop) => 
+                    (
                         <tr key={pop.id}>
                             <td>{pop.name}</td>
                             <td>{pop.email}</td>
