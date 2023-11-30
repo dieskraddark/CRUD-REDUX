@@ -104,7 +104,7 @@ export default function UserForm() {
     const handleChange = (e) => {
         setPerson({
             ...person,
-            [e.target.name]: e.target.value,
+            [e.target.name]: e.target.value, //Find the information labeled with the same name as the input field, and update it with the new value the user just typed.
         });
     };
 
