@@ -5,8 +5,6 @@ const initialState = {
     people: [],
     searchQuery: ''
 };
-
-
 export const crudSlice = createSlice({
     name: 'crud',
     initialState,

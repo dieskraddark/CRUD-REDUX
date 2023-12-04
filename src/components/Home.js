@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux';
 import { removePerson } from '../actions/Slice';
+import { useEffect } from 'react';
+import { addPerson } from '../actions/Slice';
 
 export default function Home() {
     const navigate = useNavigate();
@@ -22,20 +24,41 @@ export default function Home() {
     const people = useSelector(state => state.people);
     const search = useSelector(state => state.searchQuery);
 
+
     const filteredPeople = people.filter(
         (person) =>
-            person.name.toLowerCase().includes(search.toLowerCase())
+            person.first.toLowerCase().includes(search.toLowerCase())
     );
-    
+    useEffect(() => {
+        fetch('https://reqres.in/api/users?page=2')
+            .then((response) => response.json())
+            .then((totaldata) => {
+                const users = totaldata.data.map(user => ({
+                    id: user.id,
+                    first: user.first_name,
+                    last: user.last_name,
+                    email: user.email,
+                    phone: user.phone,
+                    dob: user.dob
+                    
+                }));
+                console.log(totaldata);
+                users.forEach(user => dispatch(addPerson(user)));
+
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+    }, [dispatch]);
     return (
         <div className='container'>
             <h1 className='emp'>Student Data</h1>
             <table id='customers'>
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>D.O.B</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>E-mail</th>
                         <th>Phone</th>
                         <th>Gender</th>
                         <th>Users Action</th>
@@ -43,12 +66,12 @@ export default function Home() {
                     </tr>
                 </thead>
                 <tbody>
-                    {filteredPeople.map((pop) => 
+                    {filteredPeople.map((pop, index) =>
                     (
-                        <tr key={pop.id}>
-                            <td>{pop.name}</td>
+                        <tr key={`${pop.id}_${index}`}>
+                            <td>{pop.first}</td>
+                            <td>{pop.last}</td>
                             <td>{pop.email}</td>
-                            <td>{pop.dob}</td>
                             <td>{pop.phone}</td>
                             <td>{pop.gender}</td>
                             <td>{pop.option}</td>

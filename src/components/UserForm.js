@@ -10,7 +10,7 @@ export default function UserForm() {
     const people = useSelector(state => state.people);
     const isEditMode = !!id; // If id has a value, isEditMode will be true; otherwise, it will be false
     const [person, setPerson] = useState({
-        name: "",
+        first_name: "",
         email: "",
         dob: "",
         phone: "",
@@ -29,6 +29,7 @@ export default function UserForm() {
             }
         }
     }, [id, people, isEditMode]);
+    
 
     const emailvalidate = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
