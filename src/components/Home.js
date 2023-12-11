@@ -1,7 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux'
 import { removePerson } from '../actions/Slice';
 import { useEffect } from 'react';
 import { addPerson } from '../actions/Slice';
@@ -10,6 +9,25 @@ export default function Home() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        fetch("https://reqres.in/api/users?page=1")
+            .then((response) => response.json())
+            .then((totaldata) => {
+                console.log(totaldata);
+                const users = totaldata.data.map(user => ({
+                    id: user.id,
+                    first: user.first_name,
+                    last: user.last_name,
+                    email: user.email
+
+                }));
+                users.forEach(user => dispatch(addPerson(user)));
+
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+    }, []);
     const handleDelete = (id) => {
         if (window.confirm("Delete the item?")) {
             dispatch(removePerson(id))
@@ -29,27 +47,7 @@ export default function Home() {
         (person) =>
             person.first.toLowerCase().includes(search.toLowerCase())
     );
-    useEffect(() => {
-        fetch('https://reqres.in/api/users?page=2')
-            .then((response) => response.json())
-            .then((totaldata) => {
-                const users = totaldata.data.map(user => ({
-                    id: user.id,
-                    first: user.first_name,
-                    last: user.last_name,
-                    email: user.email,
-                    phone: user.phone,
-                    dob: user.dob
-                    
-                }));
-                console.log(totaldata);
-                users.forEach(user => dispatch(addPerson(user)));
 
-            })
-            .catch((err) => {
-                console.log(err.message);
-            });
-    }, [dispatch]);
     return (
         <div className='container'>
             <h1 className='emp'>Student Data</h1>

@@ -17,7 +17,7 @@ export default function UserForm() {
         gender: "",
         option: "active",
         error: "",
-        id: Date.now()
+        id: "",
     })
     const [error, setError] = useState('');
 
@@ -29,7 +29,7 @@ export default function UserForm() {
             }
         }
     }, [id, people, isEditMode]);
-    
+
 
     const emailvalidate = (email) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -44,7 +44,7 @@ export default function UserForm() {
             handleAdd();
         }
     }
-    const handleAdd = () => {
+    const handleAdd = async () => {
         const { name, email, dob, phone, gender, option } = person;
         if (phone.length !== 10) {
             setError("please enter the valid number");
@@ -67,10 +67,36 @@ export default function UserForm() {
         }
 
         else {
-            dispatch(addPerson(person));
-            console.log(person);
-            goback();
-            setError("");
+            try {
+                const response = await fetch('https://reqres.in/api/users', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name,
+                        email,
+                        dob,
+                        phone,
+                        gender,
+                        option,
+                    }),
+                });
+                if (response.status == 200) {
+                    const data = await response.json();
+                    dispatch(addPerson(data));
+                    console.log(person);
+                    goback();
+                    setError("added sucesss fully");
+
+                }
+                else {
+                    console.errror("Failed to add user");
+                }
+            } catch (error) {
+                console.log("Error adding User", error.message);
+            }
+
 
         }
     }
