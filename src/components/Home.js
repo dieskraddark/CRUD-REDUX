@@ -13,7 +13,6 @@ export default function Home() {
         fetch("https://reqres.in/api/users?page=1")
             .then((response) => response.json())
             .then((totaldata) => {
-                console.log(totaldata);
                 const users = totaldata.data.map(user => ({
                     id: user.id,
                     first: user.first_name,

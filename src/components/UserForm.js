@@ -74,26 +74,27 @@ export default function UserForm() {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        name,
-                        email,
-                        dob,
-                        phone,
-                        gender,
+                         name,
                         option,
+                        gender,
+                        dob,
+                        job: "leader"
                     }),
                 });
-                if (response.status == 200) {
+                if (response.status === 201) {
+                    console.log(response)
                     const data = await response.json();
+                    console.log(data);
                     dispatch(addPerson(data));
-                    console.log(person);
                     goback();
-                    setError("added sucesss fully");
+                    setError("added sucessfully");
 
                 }
                 else {
                     console.errror("Failed to add user");
                 }
-            } catch (error) {
+            }
+            catch (error) {
                 console.log("Error adding User", error.message);
             }
 
