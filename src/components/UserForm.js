@@ -10,7 +10,7 @@ export default function UserForm() {
     const people = useSelector(state => state.people);
     const isEditMode = !!id; // If id has a value, isEditMode will be true; otherwise, it will be false
     const [person, setPerson] = useState({
-        first_name: "",
+        name: "",
         email: "",
         dob: "",
         phone: "",
@@ -52,7 +52,6 @@ export default function UserForm() {
                 setError(null); //validation 
             }, 1800);
         }
-
         else if (!emailvalidate(email)) {
             setError("please enter valid email");
             setTimeout(() => {
@@ -74,11 +73,11 @@ export default function UserForm() {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                         name,
+                        name,
                         option,
                         gender,
                         dob,
-                        job: "leader"
+                        job: "leader",
                     }),
                 });
                 if (response.status === 201) {
@@ -97,8 +96,6 @@ export default function UserForm() {
             catch (error) {
                 console.log("Error adding User", error.message);
             }
-
-
         }
     }
 

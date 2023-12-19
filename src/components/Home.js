@@ -8,25 +8,26 @@ import { addPerson } from '../actions/Slice';
 export default function Home() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const hasData = useSelector((state) => state.people.length > 0);
 
     useEffect(() => {
-        fetch("https://reqres.in/api/users?page=1")
-            .then((response) => response.json())
-            .then((totaldata) => {
-                const users = totaldata.data.map(user => ({
-                    id: user.id,
-                    first: user.first_name,
-                    last: user.last_name,
-                    email: user.email
-
-                }));
-                users.forEach(user => dispatch(addPerson(user)));
-
-            })
-            .catch((err) => {
-                console.log(err.message);
-            });
-    }, []);
+        if (!hasData) {
+            fetch("https://reqres.in/api/users?page=1")
+                .then((response) => response.json())
+                .then((totaldata) => {
+                    const users = totaldata.data.map(user => ({
+                        id: user.id,
+                        first: user.first_name,
+                        last: user.last_name,
+                        email: user.email
+                    }));
+                    users.forEach(user => dispatch(addPerson(user)));
+                })
+                .catch((err) => {
+                    console.log(err.message);
+                });
+        }
+    }, [ dispatch, hasData]);
     const handleDelete = (id) => {
         if (window.confirm("Delete the item?")) {
             dispatch(removePerson(id))
@@ -44,7 +45,7 @@ export default function Home() {
 
     const filteredPeople = people.filter(
         (person) =>
-            person.first.toLowerCase().includes(search.toLowerCase())
+            person.first && person.first.toLowerCase().includes(search.toLowerCase())
     );
 
     return (
