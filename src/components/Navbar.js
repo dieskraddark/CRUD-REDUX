@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { searchPerson } from '../actions/Slice';
+import { Outlet, Link } from "react-router-dom";
 
 export default function Navbar() {
 
@@ -15,7 +16,8 @@ export default function Navbar() {
     return (
         <div>
             <nav>
-                <div className="logo">Student Info</div>
+                <div className="logo">
+                <Link to="/" className='logo'> Student Info </Link> </div>
                 <div className="search-bar">
                     <input type="text" onChange={handleSearch} className="search-input" placeholder="Search..." />
                 </div>

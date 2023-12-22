@@ -136,8 +136,9 @@ nav {
   overflow-x: none;
 }
 
-.logo {
-  font-size: 1.5em;
+.logo  Link{
+  font-size: 1.6em;
+  text-decoration: none;
 }
 
 .search-bar {

@@ -73,7 +73,10 @@ export default function UserForm() {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
+                        id,
                         name,
+                        email,
+                        phone,
                         option,
                         gender,
                         dob,
@@ -81,13 +84,19 @@ export default function UserForm() {
                     }),
                 });
                 if (response.status === 201) {
-                    console.log(response)
                     const data = await response.json();
-                    console.log(data);
-                    dispatch(addPerson(data));
+                    const users = [data].map(user => ({
+                        first: user.name,
+                        option: user.option,
+                        gender: user.gender,
+                        job: user.job,
+                        email:user.email,
+                        phone:user.phone
+                    })); 
+                    users.forEach(user => dispatch(addPerson(user)));
+                    console.log("data after response", users);
                     goback();
                     setError("added sucessfully");
-
                 }
                 else {
                     console.errror("Failed to add user");
@@ -150,7 +159,7 @@ export default function UserForm() {
                 <label htmlFor="email">Name:</label>
                 <input className="name" type='text' name='name' value={person.name} onChange={handleChange} placeholder='Your Name...' required />
                 <label htmlFor="email">Email:</label>
-                <input type="email" name="email" defaultValue={person.email} onChange={handleChange} placeholder="Your Email.." />
+                <input type="email" name="email" value={person.email} onChange={handleChange} placeholder="Your Email.." />
                 <label htmlFor="dob">DOB:</label>
                 <input type="date" name="dob" value={person.dob} onChange={handleChange} />
                 <label htmlFor="Phone">Phone:</label>

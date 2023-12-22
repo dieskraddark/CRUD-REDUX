@@ -9,7 +9,7 @@ export default function Home() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const hasData = useSelector((state) => state.people.length > 0);
-
+    
     useEffect(() => {
         if (!hasData) {
             fetch("https://reqres.in/api/users?page=1")
@@ -27,14 +27,13 @@ export default function Home() {
                     console.log(err.message);
                 });
         }
-    }, [ dispatch, hasData]);
+    }, [hasData]);
     const handleDelete = (id) => {
         if (window.confirm("Delete the item?")) {
             dispatch(removePerson(id))
         } else {
             alert("Cancelled")
         }
-
     }
     const addclick = () => {
         navigate('/addUser');
@@ -42,12 +41,10 @@ export default function Home() {
     const people = useSelector(state => state.people);
     const search = useSelector(state => state.searchQuery);
 
-
     const filteredPeople = people.filter(
         (person) =>
             person.first && person.first.toLowerCase().includes(search.toLowerCase())
     );
-
     return (
         <div className='container'>
             <h1 className='emp'>Student Data</h1>
@@ -60,6 +57,7 @@ export default function Home() {
                         <th>Phone</th>
                         <th>Gender</th>
                         <th>Users Action</th>
+                        <th>Job</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -73,14 +71,13 @@ export default function Home() {
                             <td>{pop.phone}</td>
                             <td>{pop.gender}</td>
                             <td>{pop.option}</td>
+                            <td>{pop.job}</td>
                             <td>
                                 <button className="edit-button" onClick={() => navigate(`/editUser/${pop.id}`)} >Edit</button>
                                 <button className="delete-button" onClick={() => handleDelete(pop.id)}>Delete</button>
                             </td>
                         </tr>
                     ))}
-
-
                 </tbody>
             </table>
             <div className="add">
